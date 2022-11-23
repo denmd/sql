@@ -1,1 +1,101 @@
 
+create database bank;
+use bank;
+create table branch(branch_id int ,branch_name varchar(20),branch_city varchar(20));
+create table customer(customer_id int,customer_name varchar(20),customer_city varchar(20));
+create table savings(customer_id int ,branch_id int,saving_accno int,balance int);
+create table loans(customer_id int,branch_id int,loan_accno int,balance int);
+
+
+insert into branch values(0001,"SBI KTD","kaduthuruthy");
+insert into branch values(1001,"SIB KTD","kaduthuruthy");
+insert into branch values(2001,"FB KTD","kaduthuruthy");
+insert into branch values(0002,"SBI THP","thalayolaparambu");
+insert into branch values(1002,"SIB THP","thalayolaparambu");
+insert into branch values(3001,"CANARA THP","thalayolaparambu");
+insert into branch values(0003,"SBI ETM","ettumanoor");
+insert into branch values(2002,"FB ETM","ettumanoor");
+insert into branch values(3002,"CANARA ETM","ettumanoor");
+insert into branch values(2003,"FB KTM ","kottayam");
+insert into branch values(0004,"SBI KTM","kottayam");
+insert into branch values(1003,"SIB KTM","kottayam");
+insert into branch values(3003,"CANARA KTM","kottayam");
+
+
+insert into customer values(2020,"Devendhu","kaduthuruthy");
+insert into customer values(2021,"Alisha","cherpunkal");
+insert into customer values(2022,"alna","cherthala");
+insert into customer values(2023,"annmaria","pala");
+insert into customer values(2024,"jijil","kottayam");
+insert into customer values(2025,"navami","vaikom");
+insert into customer values(2026,"remin","ettumanoor");
+insert into customer values(2027,"abhiram","ettumanoor");
+insert into customer values(2028,"alvin","kaduthuruthy");
+insert into customer values(2029,"aswin","pala");
+insert into customer values(2030,"aswathy","piravom");
+insert into customer values(2031,"theres","mutholy");
+
+
+insert into savings values(2020,0001,110002002,50000);
+insert into savings values(2022,1002,330002002,5000);
+insert into savings values(2023,3002,440002002,30000);
+insert into savings values(2024,2003,550002002,65745);
+insert into savings values(2025,30001,660002002,9853);
+insert into savings values(2026,0003,770002002,25876);
+insert into savings values(2027,0004,880002002,3000);
+insert into savings values(2028,1001,990002002,8000);
+insert into savings values(2029,2003,100002002,36270);
+insert into savings values(2030,0001,120002002,8270);
+insert into savings values(2031,0002,130002002,7665);
+
+
+
+insert into loans values(2021,2002,40987453,90000);
+insert into loans values(2023,3002,55987453,50000);
+insert into loans values(2028,1001,67987453,10000);
+insert into loans values(2031,0002,71987453,25000);
+insert into loans values(2026,0003,89987453,20000);
+insert into loans values(2032,0004,92987453,33000);
+insert into loans values(2033,2003,43987453,8000);
+
+
+select * from branch;
+select * from customer;
+select * from savings;
+select * from loans;
+ 
+CREATE VIEW tab1 as select distinct customer_id,branch_id ,customer_name,customer_city from customer natural join savings;
+
+
+
+CREATE VIEW tab2 as select distinct customer_id,branch_id,customer_name,customer_city from customer natural join loans;
+
+
+select * from tab1,branch where customer_city=branch_city;
+union
+select * from tab2,branch where customer_city=branch_city;
+
+
+
+
+
+
+
+drop table loans;
+drop table savings;
+drop table customer;
+drop table branch;
+drop database bank;
+
+
+
+
+
+
+
+
+
+
+
+
+
